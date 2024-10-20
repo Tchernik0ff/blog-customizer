@@ -7,7 +7,6 @@ import {
 	defaultArticleState,
 } from '../../constants/articleProps';
 
-import '../../styles/index.scss';
 import styles from '../../styles/index.module.scss';
 
 export const App = () => {
