@@ -36,7 +36,7 @@ export const ArticleParamsForm = (props: formProp) => {
 	const [selectedWidth, setContentWidth] = useState<OptionType>(
 		contentWidthArr[0]
 	);
-	const [isOpen, setIsOpen] = useState(false);
+	const [isMenuOpen, setMenuIsOpen] = useState(false);
 
 	///Обработка сабмита формы
 	const handleFormSubmit = (event: React.FormEvent) => {
@@ -86,18 +86,18 @@ export const ArticleParamsForm = (props: formProp) => {
 
 	///Обработчик клика по кнопке открывающей/закрывающей асайд
 	const handleArrowClick = () => {
-		if (!isOpen) {
-			setIsOpen(true);
+		if (!isMenuOpen) {
+			setMenuIsOpen(true);
 		} else {
-			setIsOpen(false);
+			setMenuIsOpen(false);
 		}
 	};
 
 	///Хук для обработки клика вне элемента(асайда)
 	useOutsideClickClose({
-		isOpen,
+		isOpen: isMenuOpen,
 		rootRef: asideRef,
-		onChange: setIsOpen,
+		onChange: setMenuIsOpen,
 	});
 
 	///Сброс формы + передача дефолтного значения
@@ -112,11 +112,11 @@ export const ArticleParamsForm = (props: formProp) => {
 
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={handleArrowClick} />
+			<ArrowButton isOpen={isMenuOpen} onClick={handleArrowClick} />
 			<aside
 				ref={asideRef}
 				className={clsx(styles.container, {
-					[styles['container_open']]: isOpen,
+					[styles['container_open']]: isMenuOpen,
 				})}>
 				<form className={styles.form} onSubmit={handleFormSubmit}>
 					<Select
